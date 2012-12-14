@@ -171,7 +171,7 @@ A usual case
 
 ```scss
 .selector {
-  /* Positioning */
+  // Positioning
   position: absolute;
   z-index: 10;
   top: 0;
@@ -179,7 +179,7 @@ A usual case
   bottom: 0;
   left: 0;
 
-  /* Display & Box Model */
+  // Display & Box Model
   display: inline-block;
   overflow: hidden;
   box-sizing: border-box;
@@ -189,7 +189,7 @@ A usual case
   border: 10px solid #333;
   margin: 10px;
 
-  /* Other */
+  // Other
   background: #000;
   color: #fff;
   font-family: sans-serif;
@@ -256,7 +256,7 @@ readability and produce more useful diffs.
 
 An example of various conventions.
 
-```css
+```scss
 
 //@ Grid layout
 //////////////////////////////////////// ->
