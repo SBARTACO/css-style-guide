@@ -1,12 +1,8 @@
-# Principles of writing consistent, idiomatic CSS
+# Econsultancy CSS Style Guide
 
-The following document outlines a reasonable style guide for CSS development.
 These guidelines strongly encourage the use of existing, common, sensible
-patterns. They should be adapted as needed to create your own style guide.
-
-This is a living document and new ideas are always welcome. Please
+patterns. This is a living document and new ideas are always welcome. Please
 contribute.
-
 
 ## Table of contents
 
@@ -15,11 +11,6 @@ contribute.
 3. [Comments](#comments)
 4. [Format](#format)
 5. [Practical example](#example)
-
-[Acknowledgements](#acknowledgements)
-
-[License](#license)
-
 
 <a name="general-principles"></a>
 ## 1. General principles
@@ -35,7 +26,6 @@ contribute.
 * Strictly enforce the agreed-upon style.
 * If in doubt when deciding upon a style, use existing, common patterns.
 
-
 <a name="whitespace"></a>
 ## 2. Whitespace
 
@@ -44,10 +34,8 @@ be consistent in your use of whitespace. Use whitespace to improve
 readability.
 
 * _Never_ mix spaces and tabs for indentation.
-* Choose between soft indents (spaces) or real tabs. Stick to your choice
-  without fail. (Preference: spaces)
-* If using spaces, choose the number of characters used per indentation level.
-  (Preference: 4 spaces)
+* Use soft indents (spaces).
+* Use 2 characters per indentation level
 
 Tip: configure your editor to "show invisibles". This will allow you to
 eliminate end-of-line whitespace, eliminate unintended blank-line whitespace,
@@ -73,19 +61,41 @@ Comment style should be simple and consistent within a single code base.
 * Make liberal use of comments to break CSS code into discrete sections.
 * Use "sentence case" comments and consistent text indentation.
 
+Note that all the CSS in the death_star is written in SASS and so mostly
+we use the alternative comment syntax. CSS comments can still be used
+for purposes of development, licences or similar.
+
 Tip: configure your editor to provide you with shortcuts to output agreed-upon
 comment patterns.
 
 Example:
 
+```scss
+
+//@ Section, 40 slashes
+//////////////////////////////////////// ->
+
+//^ Sub-section, 20 slashes
+//////////////////// ->
+
+//
+// Title of long comment
+//
+// The first sentence of the long description starts here and continues on this
+// line for a while finally concluding here at the end of this paragraph.
+//
+// The long description is ideal for more detailed explanations and
+// documentation. It can include example HTML, URLs, or any other information
+// that is deemed necessary or useful.
+//
+// @tag This is a tag named 'tag'
+//
+
+// Basic comment
+```
+
+
 ```css
-/* ==========================================================================
-   Section comment block
-   ========================================================================== */
-
-/* Sub-section comment block
-   ========================================================================== */
-
 /**
  * Short description using Doxygen-style comment format
  *
@@ -98,14 +108,10 @@ Example:
  *
  * @tag This is a tag named 'tag'
  *
- * @todo This is a todo statement that describes an atomic task to be completed
- *   at a later date. It wraps after 80 characters and following lines are
- *   indented by 2 spaces.
  */
 
 /* Basic comment */
 ```
-
 
 <a name="format"></a>
 ## 4. Format
@@ -118,10 +124,11 @@ in useful diffs and blames.
 * Include a single space before the opening brace of a ruleset.
 * Include one declaration per line in a declaration block.
 * Use one level of indentation for each declaration.
-* Include a single space after the colon of a declaration.
 * Use lowercase and shorthand hex values, e.g., `#aaa`.
-* Use single or double quotes consistently. Preference is for double quotes,
-  e.g., `content: ""`.
+* Use hex values for colors. If rgba is needed provide a fallback in rgba and
+a comment with the hex value. This is done so it is easier to remove these
+declarations in the future.
+* Use double quotes consistently.
 * Quote attribute values in selectors, e.g., `input[type="checkbox"]`.
 * _Where allowed_, avoid specifying units for zero-values, e.g., `margin: 0`.
 * Include a space after each comma in comma-separated property or function
@@ -132,72 +139,70 @@ in useful diffs and blames.
   character of the ruleset.
 * Separate each ruleset by a blank line.
 
-```css
+```scss
 .selector-1,
 .selector-2,
 .selector-3[type="text"] {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    display: block;
-    font-family: helvetica, arial, sans-serif;
-    color: #333;
-    background: #fff;
-    background: linear-gradient(#fff, rgba(0, 0, 0, 0.8));
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  font-family: helvetica, arial, sans-serif;
+  color: #333;
+  background: #fff;
+  background: linear-gradient(#fff, rgba(0, 0, 0, 0.8));
 }
 
 .selector-a,
 .selector-b {
-    padding: 10px;
+  padding: 10px;
+  color: rgb(0, 0, 0, 0.3);
+  color: rgba(0, 0, 0, 0.3); // #000
 }
 ```
 
 #### Declaration order
 
-If declarations are to be consistently ordered, it should be in accordance with
-a single, simple principle. My preference is for structurally important
-properties (e.g. positioning and box-model) to be declared prior to all
-others.
+If faced with a selector with a large number of properites consider
+breaking them up by category. This can differ widely from selector to selector,
+but always good candidates are positioning, box-model and colors.
 
-```css
+A usual case
+
+```scss
 .selector {
-    /* Positioning */
-    position: absolute;
-    z-index: 10;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+  /* Positioning */
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
-    /* Display & Box Model */
-    display: inline-block;
-    overflow: hidden;
-    box-sizing: border-box;
-    width: 100px;
-    height: 100px;
-    padding: 10px;
-    border: 10px solid #333;
-    margin: 10px;
+  /* Display & Box Model */
+  display: inline-block;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  border: 10px solid #333;
+  margin: 10px;
 
-    /* Other */
-    background: #000;
-    color: #fff;
-    font-family: sans-serif;
-    font-size: 16px;
-    text-align: right;
+  /* Other */
+  background: #000;
+  color: #fff;
+  font-family: sans-serif;
+  font-size: 16px;
+  text-align: right;
 }
 ```
 
-Strict alphabetical ordering is also relatively popular, but the drawback is
-that it separates related properties. For example, position offsets are no
-longer grouped together and box-model properties can end up spread throughout a
-declaration block.
-
 #### Exceptions and slight deviations
 
-Large blocks of single declarations can use a slightly different, single-line
-format. In this case, a space should be included after the opening brace and
-before the closing brace.
+Single declarations with up to 3 properties can use a slightly different,
+single-line format. In this case, a space should be included after the opening
+brace and before the closing brace.
 
 ```css
 .selector-1 { width: 10%; }
@@ -207,8 +212,7 @@ before the closing brace.
 
 Long, comma-separated property values - such as collections of gradients or
 shadows - can be arranged across multiple lines in an effort to improve
-readability and produce more useful diffs. There are various formats that could
-be used; one example is shown below.
+readability and produce more useful diffs.
 
 ```css
 .selector {
@@ -221,11 +225,7 @@ be used; one example is shown below.
 }
 ```
 
-### Preprocessors: additional format considerations
-
-Different CSS preprocessors have different features, functionality, and syntax.
-Your conventions should be extended to accommodate the particularities of any
-preprocessor in use. The following guidelines are in reference to Sass.
+### SASS
 
 * Limit nesting to 1 level deep. Reassess any nesting more than 2 levels deep.
   This prevents overly-specific CSS selectors.
@@ -242,11 +242,11 @@ preprocessor in use. The following guidelines are in reference to Sass.
 
 ```scss
 .selector-1 {
-    @extend .other-rule;
-    @include clearfix();
-    @include box-sizing(border-box);
-    width: x-grid-unit(1);
-    // other declarations
+  @extend .other-rule;
+  @include clearfix();
+  @include box-sizing(border-box);
+  width: x-grid-unit(1);
+  // other declarations
 }
 ```
 
@@ -257,67 +257,65 @@ preprocessor in use. The following guidelines are in reference to Sass.
 An example of various conventions.
 
 ```css
-/* ==========================================================================
-   Grid layout
-   ========================================================================== */
 
-/**
- * Column layout with horizontal scroll.
- *
- * This creates a single row of full-height, non-wrapping columns that can
- * be browsed horizontally within their parent.
- *
- * Example HTML:
- *
- * <div class="grid">
- *     <div class="cell cell-3"></div>
- *     <div class="cell cell-3"></div>
- *     <div class="cell cell-3"></div>
- * </div>
- */
+//@ Grid layout
+//////////////////////////////////////// ->
 
-/**
- * Grid container
- * Must only contain `.cell` children.
- */
+//
+// Column layout with horizontal scroll.
+//
+// This creates a single row of full-height, non-wrapping columns that can
+// be browsed horizontally within their parent.
+//
+// Example HTML:
+//
+// <div class="grid">
+//     <div class="cell cell-3"></div>
+//     <div class="cell cell-3"></div>
+//     <div class="cell cell-3"></div>
+// </div>
+//
+
+//
+// Grid container
+// Must only contain `.cell` children.
+//
 
 .grid {
     height: 100%;
-    /* Remove inter-cell whitespace */
+    // Remove inter-cell whitespace
     font-size: 0;
-    /* Prevent inline-block cells wrapping */
+    // Prevent inline-block cells wrapping
     white-space: nowrap;
 }
 
-/**
- * Grid cells
- * No explicit width by default. Extend with `.cell-n` classes.
- */
+//
+// Grid cells
+// No explicit width by default. Extend with `.cell-n` classes.
+//
 
 .cell {
-    position: relative;
-    display: inline-block;
-    overflow: hidden;
-    box-sizing: border-box;
-    height: 100%;
-    /* Set the inter-cell spacing */
-    padding: 0 10px;
-    border: 2px solid #333;
-    vertical-align: top;
-    /* Reset white-space */
-    white-space: normal;
-    /* Reset font-size */
-    font-size: 16px;
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  box-sizing: border-box;
+  height: 100%;
+  // Set the inter-cell spacing
+  padding: 0 10px;
+  border: 2px solid #333;
+  vertical-align: top;
+  // Reset white-space
+  white-space: normal;
+  // Reset font-size
+  font-size: 16px;
 }
 
-/* Cell states */
+// Cell states
 
-.cell.is-animating {
-    background-color: #fffdec;
-}
+.cell.is-animating { background-color: #fffdec; }
 
-/* Cell dimensions
-   ========================================================================== */
+//^ Cell dimensions
+//////////////////// ->
 
 .cell-1 { width: 10%; }
 .cell-2 { width: 20%; }
@@ -325,8 +323,8 @@ An example of various conventions.
 .cell-4 { width: 40%; }
 .cell-5 { width: 50%; }
 
-/* Cell modifiers
-   ========================================================================== */
+//^ Cell modifiers
+//////////////////// ->
 
 .cell--detail,
 .cell--important {
@@ -335,40 +333,9 @@ An example of various conventions.
 ```
 
 
-## Translations
-
-* [Česky](https://github.com/necolas/idiomatic-css/tree/master/translations/cs-CZ)
-* [Dansk](https://github.com/necolas/idiomatic-css/tree/master/translations/da-DK)
-* [Deutsch](https://github.com/necolas/idiomatic-css/tree/master/translations/de-DE)
-* [Español](https://github.com/necolas/idiomatic-css/tree/master/translations/es-ES)
-* [Français](https://github.com/necolas/idiomatic-css/tree/master/translations/fr-FR)
-* [Italiano](https://github.com/necolas/idiomatic-css/tree/master/translations/it-IT)
-* [日本語](https://github.com/necolas/idiomatic-css/tree/master/translations/ja-JP)
-* [한국어](https://github.com/necolas/idiomatic-css/tree/master/translations/ko-KR)
-* [Nederlands](https://github.com/necolas/idiomatic-css/tree/master/translations/nl-NL)
-* [Polski](https://github.com/necolas/idiomatic-css/tree/master/translations/pl-PL)
-* [Português (Brasil)](https://github.com/necolas/idiomatic-css/tree/master/translations/pt-BR)
-* [Русский](https://github.com/necolas/idiomatic-css/tree/master/translations/ru-RU)
-* [Srpski](https://github.com/necolas/idiomatic-css/tree/master/translations/sr-SR)
-* [Türkçe](https://github.com/necolas/idiomatic-css/tree/master/translations/tr-TR)
-* [简体中文](https://github.com/necolas/idiomatic-css/tree/master/translations/zh-CN)
-
-
-<a name="acknowledgements"></a>
-## Acknowledgements
-
-Thanks to everyone who has provided translations and to all those who
-contributed to [idiomatic.js](https://github.com/rwldrn/idiomatic.js). It was a
-source of inspiration, quotations, and guidelines.
-
-
-<a name="license"></a>
 ## License
 
-_Principles of writing consistent, idiomatic CSS_ by Nicolas Gallagher is
+This documented is a fork of
+_Principles of writing consistent, idiomatic CSS_ by Nicolas Gallagher
 licensed under the [Creative Commons Attribution 3.0 Unported
-License](http://creativecommons.org/licenses/by/3.0/). This applies to all
-documents and translations in this repository.
-
-Based on a work at
-[github.com/necolas/idiomatic-css](https://github.com/necolas/idiomatic-css).
+License](http://creativecommons.org/licenses/by/3.0/).
