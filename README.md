@@ -58,7 +58,7 @@ We use a BEM inspired naming convetion, which although verbose helps in:
 
 
 <a name="comments"></a>
-## 3. Comments
+## 4. Comments
 
 Well commented code is extremely important. Take time to describe components,
 how they work, their limitations, and the way they are constructed. Don't leave
@@ -76,52 +76,33 @@ Note that all the CSS in the death_star is written in SASS and so mostly
 we use the alternative comment syntax. CSS comments can still be used
 for purposes of development, licences or similar.
 
-Tip: configure your editor to provide you with shortcuts to output agreed-upon
-comment patterns.
+We use the three patterns below to separate stylesheets into sections
 
-Example:
+We use the following comment header styles:
 
 ```scss
 
-//@ Section, 40 slashes
-//////////////////////////////////////// ->
+A partial header, use only on top of the file. Feeling like you need another one?
+Make a new partial. Start CSS after two empty new lines.
 
-//^ Sub-section, 20 slashes
-//////////////////// ->
+// ----------------------------------------------------------------------------
+// Page
+// Optional page/stylesheet description.
+// ----------------------------------------------------------------------------
 
-//
-// Title of long comment
-//
-// The first sentence of the long description starts here and continues on this
-// line for a while finally concluding here at the end of this paragraph.
-//
-// The long description is ideal for more detailed explanations and
-// documentation. It can include example HTML, URLs, or any other information
-// that is deemed necessary or useful.
-//
-// @tag This is a tag named 'tag'
-//
+A section or partial heading.
+Make sure there is two empty lines above and one after.
 
-// Basic comment
+// @ SECTION
+// --------------------------------------------------------------------------
+
+
 ```
 
-
-```css
-/**
- * Short description using Doxygen-style comment format
- *
- * The first sentence of the long description starts here and continues on this
- * line for a while finally concluding here at the end of this paragraph.
- *
- * The long description is ideal for more detailed explanations and
- * documentation. It can include example HTML, URLs, or any other information
- * that is deemed necessary or useful.
- *
- * @tag This is a tag named 'tag'
- *
- */
-
-/* Basic comment */
+Example of a basic comment
+```scss
+// This is a selector
+.selector { color: #fff; }
 ```
 
 <a name="format"></a>
