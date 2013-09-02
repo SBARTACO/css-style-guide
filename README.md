@@ -8,9 +8,10 @@ contribute.
 
 1. [General principles](#general-principles)
 2. [Whitespace](#whitespace)
-3. [Comments](#comments)
-4. [Format](#format)
-5. [Practical example](#example)
+3. [Naming](#naming)
+4. [Comments](#comments)
+5. [Format](#format)
+6. [Practical example](#example)
 
 <a name="general-principles"></a>
 ## 1. General principles
@@ -44,6 +45,16 @@ and avoid polluting commits.
 Tip: use an [EditorConfig](http://editorconfig.org/) file (or equivalent) to
 help maintain the basic whitespace conventions that have been agreed for your
 code-base.
+
+
+<a name="naming"></a>
+## 3. Naming
+
+We use a BEM inspired naming convetion, which although verbose helps in:
+
+* easily identifing UI elements, their state and variant in HTML
+* better maintanace through more readable stylesheets
+* avoiding cascade pitfalls
 
 
 <a name="comments"></a>
