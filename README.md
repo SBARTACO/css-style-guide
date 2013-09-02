@@ -106,7 +106,7 @@ Example of a basic comment
 ```
 
 <a name="format"></a>
-## 4. Format
+## 5. Format
 
 The chosen code format must ensure that code is: easy to read; easy to clearly
 comment; minimizes the chance of accidentally introducing errors; and results
@@ -244,16 +244,17 @@ readability and produce more useful diffs.
 
 
 <a name="example"></a>
-## 5. Practical example
+## 6. Practical example
 
 An example of various conventions.
 
 ```scss
 
-//@ Grid layout
-//////////////////////////////////////// ->
+// ----------------------------------------------------------------------------
+// Grid
+// ----------------------------------------------------------------------------
 
-//
+
 // Column layout with horizontal scroll.
 //
 // This creates a single row of full-height, non-wrapping columns that can
@@ -262,66 +263,56 @@ An example of various conventions.
 // Example HTML:
 //
 // <div class="grid">
-//     <div class="cell cell-3"></div>
-//     <div class="cell cell-3"></div>
-//     <div class="cell cell-3"></div>
+//   <div class="grid__cell grid__cell--3"></div>
+//   <div class="grid__cell grid__cell--3"></div>
+//   <div class="grid__cell grid__cell--3"></div>
 // </div>
 //
 
-//
-// Grid container
-// Must only contain `.cell` children.
-//
+
+// @ GRID CONTAINER
+// --------------------------------------------------------------------------
 
 .grid {
-    height: 100%;
-    // Remove inter-cell whitespace
-    font-size: 0;
-    // Prevent inline-block cells wrapping
-    white-space: nowrap;
+  height: 100%;
+  // Remove inter-cell whitespace
+  font-size: 0;
+  // Prevent inline-block cells wrapping
+  white-space: nowrap;
 }
 
-//
-// Grid cells
-// No explicit width by default. Extend with `.cell-n` classes.
-//
 
-.cell {
+// @ GRID CELLS
+// --------------------------------------------------------------------------
+
+.grid__cell {
   position: relative;
   display: inline-block;
   overflow: hidden;
   box-sizing: border-box;
   height: 100%;
-  // Set the inter-cell spacing
   padding: 0 10px;
   border: 2px solid #333;
   vertical-align: top;
-  // Reset white-space
   white-space: normal;
+
   // Reset font-size
   font-size: 16px;
 }
 
-// Cell states
+.grid__cell--highlight { background-color: #fffdec; }
 
-.cell.is-animating { background-color: #fffdec; }
+.grid__cell--1 { width: 10%; }
+.grid__cell--2 { width: 20%; }
+.grid__cell--3 { width: 30%; }
+.grid__cell--4 { width: 40%; }
+.grid__cell--5 { width: 50%; }
 
-//^ Cell dimensions
-//////////////////// ->
-
-.cell-1 { width: 10%; }
-.cell-2 { width: 20%; }
-.cell-3 { width: 30%; }
-.cell-4 { width: 40%; }
-.cell-5 { width: 50%; }
-
-//^ Cell modifiers
-//////////////////// ->
-
-.cell--detail,
-.cell--important {
-    border-width: 4px;
+.grid__cell---detail,
+.grid__cell---important {
+  border-width: 4px;
 }
+
 ```
 
 
