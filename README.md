@@ -208,12 +208,12 @@ readability and produce more useful diffs.
 
 ```css
 .selector {
-    background-image:
-        linear-gradient(#fff, #ccc),
-        linear-gradient(#f3c, #4ec);
-    box-shadow:
-        1px 1px 1px #000,
-        2px 2px 1px 1px #ccc inset;
+  background-image:
+    linear-gradient(#fff, #ccc),
+    linear-gradient(#f3c, #4ec);
+  box-shadow:
+    1px 1px 1px #000,
+    2px 2px 1px 1px #ccc inset;
 }
 ```
 
@@ -318,7 +318,7 @@ An example of various conventions.
 
 ## License
 
-This documented is a fork of
+This document is a fork of
 _Principles of writing consistent, idiomatic CSS_ by Nicolas Gallagher
 licensed under the [Creative Commons Attribution 3.0 Unported
 License](http://creativecommons.org/licenses/by/3.0/).
