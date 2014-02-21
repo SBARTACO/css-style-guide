@@ -38,19 +38,11 @@ readability.
 * Use soft indents (spaces).
 * Use 2 characters per indentation level
 
-Tip: configure your editor to "show invisibles". This will allow you to
-eliminate end-of-line whitespace, eliminate unintended blank-line whitespace,
-and avoid polluting commits.
-
-Tip: use an [EditorConfig](http://editorconfig.org/) file (or equivalent) to
-help maintain the basic whitespace conventions that have been agreed for your
-code-base.
-
 
 <a name="naming"></a>
 ## 3. Naming
 
-We use a BEM inspired naming convetion, which although verbose helps in:
+We use a BEM [Block Element Modifier](http://bem.github.io/bem-method/html/all.en.html) inspired naming convetion, which although verbose helps in:
 
 * easily identifing UI elements, their state and variant in HTML
 * better maintanace through more readable stylesheets
@@ -72,7 +64,7 @@ Comment style should be simple and consistent within a single code base.
 * Make liberal use of comments to break CSS code into discrete sections.
 * Use "sentence case" comments and consistent text indentation.
 
-Note that all the CSS in the death_star is written in SASS and so mostly
+Note that all the CSS in the deathstar is written in SASS and so mostly
 we use the alternative comment syntax. CSS comments can still be used
 for purposes of development, licences or similar.
 
